@@ -1,15 +1,11 @@
 import 'package:dio/dio.dart';
 
 class BaseProvider {
-  late Dio _dio;
-  final String _baseUrl;
+  final Dio _dio;
 
-  BaseProvider(this._baseUrl) {
-    _dio = Dio(BaseOptions(baseUrl: _baseUrl));
-  }
+  BaseProvider(this._dio);
 
   Future<Response> get(String path) async {
-    final url = _baseUrl + path;
-    return _dio.get(url);
+    return _dio.get(path);
   }
 }

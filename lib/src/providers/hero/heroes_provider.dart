@@ -1,3 +1,4 @@
+import 'package:dio/src/dio.dart';
 import 'package:super_hero/src/dto/all_heros_response_dto.dart';
 import 'package:super_hero/src/providers/providers.dart';
 
@@ -10,12 +11,12 @@ enum EndPoints {
 }
 
 class HeroesProvider extends BaseProvider implements HeroesProviderInterface {
-  HeroesProvider(baseUrl) : super(baseUrl);
+  HeroesProvider(Dio dio) : super(dio);
 
   String _getEndPoint(EndPoints endPoint) {
     switch (endPoint) {
       case EndPoints.all:
-        return '/all';
+        return '/all.json';
       default:
         return '';
     }
