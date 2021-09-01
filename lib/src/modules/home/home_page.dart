@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Consumer<HomeBlocInterface>(
         builder: (context, bloc, child) {
@@ -26,7 +25,10 @@ class _HomePageState extends State<HomePage> {
             itemCount: bloc.heroes.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                title: Text(bloc.heroes[index].name),
+                title: Text(
+                  bloc.heroes[index].name,
+                  key: Key(bloc.heroes[index].name),
+                ),
               );
             },
           );
