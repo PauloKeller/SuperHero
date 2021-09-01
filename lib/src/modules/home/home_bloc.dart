@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -10,13 +11,13 @@ abstract class HomeBlocInterface with ChangeNotifier {
   set errorMessage(String value);
   bool get hasError;
   String get errorMessage;
-  List<HeroModel> get heroes;
+  UnmodifiableListView<HeroModel> get heroes;
 }
 
 class HomeBloc with ChangeNotifier implements HomeBlocInterface {
   HeroesProvider _heroesProvider;
 
-  List<HeroModel> _heroes = List.unmodifiable([]);
+  List<HeroModel> _heroes = [];
   bool _hasError = false;
   String _errorMessage = "";
 
@@ -27,7 +28,7 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
 
   bool get hasError => _hasError;
   String get errorMessage => _errorMessage;
-  List<HeroModel> get heroes => _heroes;
+  UnmodifiableListView<HeroModel> get heroes => UnmodifiableListView(_heroes);
 
   HomeBloc(this._heroesProvider) {
     fetchAllHeroes();
