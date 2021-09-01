@@ -25,8 +25,22 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
       ),
       body: SafeArea(
         child: PageView(
+          scrollDirection: Axis.vertical,
           children: [
-            Text(widget.heroModel.slug),
+            Container(
+              child:  Text(widget.heroModel.slug),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Text(widget.heroModel.powerStats.intelligence.toString()),
+                  Text(widget.heroModel.powerStats.combat.toString()),
+                  Text(widget.heroModel.powerStats.durability.toString()),
+                  Text(widget.heroModel.powerStats.speed.toString()),
+                  Text(widget.heroModel.powerStats.strength.toString()),
+                ],
+              ),
+            ),
           ],
         ),
       ),

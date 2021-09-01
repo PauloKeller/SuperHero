@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:super_hero/src/models/models.dart';
 import 'package:super_hero/src/providers/hero/heroes_provider.dart';
 
 abstract class HomeBlocInterface with ChangeNotifier {
   void fetchAllHeroes();
+  HeroModel pickRandomHero();
   set errorMessage(String value);
   bool get hasError;
   String get errorMessage;
@@ -40,5 +43,10 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
     }
 
     notifyListeners();
+  }
+
+  HeroModel pickRandomHero() {
+    final random = new Random();
+    return _heroes[random.nextInt(_heroes.length)];
   }
 }
