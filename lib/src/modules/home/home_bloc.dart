@@ -41,6 +41,7 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
     } catch (e) {
       _hasError = true;
       errorMessage = "Fail to fetch data";
+      print(e);
     }
 
     notifyListeners();
