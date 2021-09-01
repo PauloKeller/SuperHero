@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:super_hero/src/models/models.dart';
 import 'package:super_hero/src/modules/hero_details/hero_details_module.dart';
+import 'package:super_hero/src/widgets/heroes_home_list/heroes_home_list_item.dart';
 
 class HeroesHomeList extends StatelessWidget {
   final UnmodifiableListView<HeroModel> _heroes;
@@ -21,13 +22,9 @@ class HeroesHomeList extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       itemCount: _heroes.length,
       itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text(
-            _heroes[index].name,
-            key: Key(_heroes[index].name),
-          ),
-          onTap: () => _goToHeroDetails(context, _heroes[index]),
-        );
+        final hero = _heroes[index];
+
+        return HeroesHomeListItem(hero, () => _goToHeroDetails(context, hero));
       },
     );
   }

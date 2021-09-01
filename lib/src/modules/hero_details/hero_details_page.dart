@@ -26,18 +26,18 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
       ),
       body: SafeArea(
         child: PageView(
+          pageSnapping: true,
           scrollDirection: Axis.vertical,
           children: [
             Container(
-              child:  Text(widget.hero.slug),
+              child:  HeroDetailsBoard(widget.hero),
             ),
             Container(
-              child: Column(
-                children: [
-                  PowerStatsIndicator(widget.hero.powerStats),
-                ],
-              ),
+              child: PowerStatsIndicator(widget.hero.powerStats),
             ),
+            Container(
+              child: HeroBiographyDetails(widget.hero.biography),
+            )
           ],
         ),
       ),

@@ -28,8 +28,15 @@ Gender genderFrom(String value) {
 
 class AppearanceModel {
   final Gender gender;
+  final String race;
+  final String eyeColor;
+  final String hairColor;
 
-  AppearanceModel(this.gender);
+  AppearanceModel(this.gender, this.race, this.eyeColor, this.hairColor);
 
-  AppearanceModel.fromMap(Map<String, dynamic> map) : gender = genderFrom(map['gender'].toString().toLowerCase());
+  AppearanceModel.fromMap(Map<String, dynamic> map)
+      : gender = genderFrom(map['gender'].toString().toLowerCase()),
+        race = map["race"] ?? "",
+        eyeColor = map["eyeColor"] ?? "",
+        hairColor = map["hairColor"] ?? "";
 }
