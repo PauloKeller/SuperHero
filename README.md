@@ -5,6 +5,7 @@
 ## TODO:
 
 - [] Error handling
+- [] Add widgets tests
 - [] Update tests
 - [] CI scripts
 
