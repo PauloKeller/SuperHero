@@ -2,10 +2,9 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:super_hero/src/models/hero/hero_model.dart';
+
 import 'package:super_hero/src/models/models.dart';
-import 'package:super_hero/src/modules/hero_details/hero_details_module.dart';
-import 'package:super_hero/src/modules/home/home_module.dart';
+import 'package:super_hero/src/modules/modules.dart';
 import 'package:super_hero/src/widgets/widgets.dart';
 
 enum HomeBottomNavigationBarOptions { all, female, male }
@@ -90,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: _actionButtonTapped,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'All',

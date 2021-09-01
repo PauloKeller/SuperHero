@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:super_hero/src/models/hero/hero_model.dart';
+import 'package:super_hero/src/widgets/widgets.dart';
 
 class HeroDetailsPage extends StatefulWidget {
-  final HeroModel heroModel;
+  final HeroModel hero;
 
-  const HeroDetailsPage(this.heroModel, {Key? key}) : super(key: key);
+  const HeroDetailsPage(this.hero, {Key? key}) : super(key: key);
 
   @override
   _HeroDetailsPageState createState() => _HeroDetailsPageState();
@@ -16,7 +17,7 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.heroModel.name,
+          widget.hero.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -28,16 +29,12 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
           scrollDirection: Axis.vertical,
           children: [
             Container(
-              child:  Text(widget.heroModel.slug),
+              child:  Text(widget.hero.slug),
             ),
             Container(
               child: Column(
                 children: [
-                  Text(widget.heroModel.powerStats.intelligence.toString()),
-                  Text(widget.heroModel.powerStats.combat.toString()),
-                  Text(widget.heroModel.powerStats.durability.toString()),
-                  Text(widget.heroModel.powerStats.speed.toString()),
-                  Text(widget.heroModel.powerStats.strength.toString()),
+                  PowerStatsIndicator(widget.hero.powerStats),
                 ],
               ),
             ),
