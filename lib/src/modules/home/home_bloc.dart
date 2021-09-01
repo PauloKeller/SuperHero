@@ -12,6 +12,7 @@ abstract class HomeBlocInterface with ChangeNotifier {
   bool get hasError;
   String get errorMessage;
   UnmodifiableListView<HeroModel> get heroes;
+  UnmodifiableListView<HeroModel> filterBy(Gender gender);
 }
 
 class HomeBloc with ChangeNotifier implements HomeBlocInterface {
@@ -45,6 +46,11 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
     }
 
     notifyListeners();
+  }
+
+  UnmodifiableListView<HeroModel> filterBy(Gender gender) {
+    final filtered = _heroes.where((element) => element.appearance.gender == gender);
+    return UnmodifiableListView(filtered);
   }
 
   HeroModel pickRandomHero() {

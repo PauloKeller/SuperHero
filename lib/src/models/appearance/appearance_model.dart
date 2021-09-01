@@ -17,7 +17,7 @@ Gender genderFrom(String value) {
   switch (value) {
     case "male":
       return Gender.male;
-    case "famale":
+    case "female":
       return Gender.female;
     case "undefined":
       return Gender.undefined;
@@ -31,5 +31,5 @@ class AppearanceModel {
 
   AppearanceModel(this.gender);
 
-  AppearanceModel.fromMap(Map<String, dynamic> map) : gender = genderFrom(map['gender']);
+  AppearanceModel.fromMap(Map<String, dynamic> map) : gender = genderFrom(map['gender'].toString().toLowerCase());
 }

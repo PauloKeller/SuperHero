@@ -3,8 +3,12 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_hero/src/models/hero/hero_model.dart';
+import 'package:super_hero/src/models/models.dart';
 import 'package:super_hero/src/modules/hero_details/hero_details_module.dart';
 import 'package:super_hero/src/modules/home/home_module.dart';
+import 'package:super_hero/src/widgets/widgets.dart';
+
+enum HomeBottomNavigationBarOptions { all, female, male }
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +19,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late HomeBlocInterface _homeBloc;
+
+  HomeBottomNavigationBarOptions _selectedNavigationBarOption = HomeBottomNavigationBarOptions.all;
+
+  Widget _selectHomeList() {
+    return Consumer<HomeBlocInterface>(
+      builder: (context, bloc, child) {
+        switch (_selectedNavigationBarOption) {
+          case HomeBottomNavigationBarOptions.all:
+            return HeroesHomeList(bloc.heroes);
+          case HomeBottomNavigationBarOptions.female:
+            return HeroesHomeList(bloc.filterBy(Gender.female));
+          case HomeBottomNavigationBarOptions.male:
+            return HeroesHomeList(bloc.filterBy(Gender.male));
+        }
+      },
+    );
+  }
 
   void _goToHeroDetails(HeroModel model) {
     final route = MaterialPageRoute(builder: (context) => HeroDetailsPage(model));
@@ -33,6 +54,12 @@ class _HomePageState extends State<HomePage> {
     if (result != null) {
       _goToHeroDetails(result);
     }
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedNavigationBarOption = HomeBottomNavigationBarOptions.values[index];
+    });
   }
 
   @override
@@ -55,26 +82,30 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Consumer<HomeBlocInterface>(
-        builder: (context, bloc, child) {
-          return ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: bloc.heroes.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(
-                  bloc.heroes[index].name,
-                  key: Key(bloc.heroes[index].name),
-                ),
-                onTap: () => _goToHeroDetails(bloc.heroes[index]),
-              );
-            },
-          );
-        },
+      body: Center(
+        child: _selectHomeList(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.subdirectory_arrow_right),
         onPressed: _actionButtonTapped,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'All',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.female),
+            label: 'Female',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.male),
+            label: 'Male',
+          ),
+        ],
+        currentIndex: _selectedNavigationBarOption.index,
+        onTap: _onItemTapped,
       ),
     );
   }
