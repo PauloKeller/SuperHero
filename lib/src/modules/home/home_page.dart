@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:super_hero/src/models/hero/hero_model.dart';
+import 'package:super_hero/src/modules/hero_details/hero_details.dart';
 import 'package:super_hero/src/modules/home/home_bloc.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +12,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  void _goToHeroDetails(HeroModel model) {
+    final route = MaterialPageRoute(
+        builder: (context) => HeroDetailsPage(model)
+    );
+
+    Navigator.push(context, route);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +40,7 @@ class _HomePageState extends State<HomePage> {
                   bloc.heroes[index].name,
                   key: Key(bloc.heroes[index].name),
                 ),
+                onTap: () => _goToHeroDetails(bloc.heroes[index]),
               );
             },
           );

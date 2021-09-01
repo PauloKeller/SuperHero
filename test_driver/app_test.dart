@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 import 'test_utils.dart';
 
 void main() {
-  group('Test reset password flux', () {
+  group('Test driver', () {
     late FlutterDriver driver;
 
     setUpAll(() async {
