@@ -7,7 +7,7 @@
 - [x] Error handling
 - [] Add widgets tests
 - [x] Update tests
-- [] CI scripts
+- [x] CI scripts
 
 ## Test drive
 
