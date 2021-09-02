@@ -4,9 +4,9 @@
 
 ## TODO:
 
-- [] Error handling
+- [x] Error handling
 - [] Add widgets tests
-- [] Update tests
+- [x] Update tests
 - [] CI scripts
 
 ## Test drive

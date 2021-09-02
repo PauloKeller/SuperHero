@@ -1,5 +1,5 @@
 import 'package:dio/src/dio.dart';
-import 'package:super_hero/src/dto/all_heros_response_dto.dart';
+import 'package:super_hero/src/dto/all_heroes_response_dto.dart';
 import 'package:super_hero/src/providers/providers.dart';
 
 abstract class HeroesProviderInterface {
