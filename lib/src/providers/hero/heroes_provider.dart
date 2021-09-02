@@ -1,4 +1,4 @@
-import 'package:dio/src/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:super_hero/src/dto/all_heroes_response_dto.dart';
 import 'package:super_hero/src/providers/providers.dart';
 
