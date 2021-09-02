@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:super_hero/src/dto/all_heroes_response_dto.dart';
