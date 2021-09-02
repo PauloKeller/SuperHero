@@ -21,9 +21,9 @@ jobs:
           channel: 'dev'
       - run: flutter pub get
       # run static analys code
-      - run: flutter  analyze --no-sound-null-safety
+      - run: flutter  analyze
       # run  flutter widgets tests  and unit tests
-      - run: flutter test --no-sound-null-safety --coverage
+      - run: flutter test
       # Upload coverage reports to Codecov
       # https://github.com/marketplace/actions/codecov
       - name: Upload coverage to Codecov
