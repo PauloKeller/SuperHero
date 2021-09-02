@@ -9,6 +9,7 @@ abstract class HomeBlocInterface with ChangeNotifier {
   void fetchAllHeroes();
   HeroModel pickRandomHero();
   set errorMessage(String value);
+  set hasError(bool value);
   bool get hasError;
   String get errorMessage;
   UnmodifiableListView<HeroModel> get heroes;
@@ -22,13 +23,23 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
   bool _hasError = false;
   String _errorMessage = "";
 
+  String get errorMessage => _errorMessage;
+
   set errorMessage(String value) {
     _hasError = true;
     _errorMessage = value;
+
+    notifyListeners();
   }
 
   bool get hasError => _hasError;
-  String get errorMessage => _errorMessage;
+
+  set hasError(bool value) {
+    _hasError = value;
+
+    notifyListeners();
+  }
+
   UnmodifiableListView<HeroModel> get heroes => UnmodifiableListView(_heroes);
 
   HomeBloc(this._heroesProvider) {
@@ -42,7 +53,6 @@ class HomeBloc with ChangeNotifier implements HomeBlocInterface {
     } catch (e) {
       _hasError = true;
       errorMessage = "Fail to fetch data";
-      print(e);
     }
 
     notifyListeners();

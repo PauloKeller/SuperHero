@@ -24,6 +24,21 @@ class _HomePageState extends State<HomePage> {
   Widget _selectHomeList() {
     return Consumer<HomeBlocInterface>(
       builder: (context, bloc, child) {
+        if (bloc.hasError) {
+          return Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(bloc.errorMessage),
+                TextButton(
+                  onPressed: _retry,
+                  child: Text("retry"),
+                )
+              ],
+            ),
+          );
+        }
+
         switch (_selectedNavigationBarOption) {
           case HomeBottomNavigationBarOptions.all:
             return HeroesHomeList(bloc.heroes);
@@ -59,6 +74,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedNavigationBarOption = HomeBottomNavigationBarOptions.values[index];
     });
+  }
+
+  void _retry() {
+    _homeBloc.hasError = false;
+    _homeBloc.fetchAllHeroes();
   }
 
   @override
