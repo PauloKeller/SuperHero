@@ -5,7 +5,7 @@ class BaseProvider {
 
   BaseProvider(this._dio);
 
-  Future<Response> get(String path) async {
+  Future<Response<dynamic>> get(String path) async {
     return _dio.get(path);
   }
 }
